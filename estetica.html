@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisiourense Estética - Fisiourense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-bg-estetica {
+            background-image: linear-gradient(rgba(0, 20, 30, 0.7), rgba(0, 20, 30, 0.7)), url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757606337/Generated_Image_September_11_2025_-_5_58PM_lyiikh.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Estilos para animación de scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .scroll-animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Estilos para las tarjetas de servicio 3D */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 350px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: default;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .flip-card-front {
+            color: white;
+        }
+        .flip-card-back {
+            background-color: white;
+            color: #111827;
+            transform: rotateY(180deg);
+            padding: 1.5rem;
+            flex-direction: column;
+        }
+        .card-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 83, 109, 0.9) 0%, rgba(0, 109, 135, 0.5) 100%);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 text-gray-800">
+
+    <div class="max-w-screen-xl mx-auto bg-gray-50 shadow-2xl">
+
+        <!-- Encabezado y Navegación -->
+        <header id="header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-screen-xl z-50 transition-all duration-300">
+            <div class="container mx-auto px-4">
+                <nav class="flex justify-between items-center py-4">
+                    <a href="fisiourense_clone.html" id="logo">
+                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto transition-all duration-300">
+                    </a>
+                    
+                    <a href="fisiourense_clone.html#contacto" class="hidden md:inline-block bg-cyan-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">PIDE CITA</a>
+                    
+                    <button id="mobile-menu-button" class="md:hidden text-white">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </nav>
+            </div>
+             <!-- Menú Móvil -->
+            <div id="mobile-menu" class="hidden md:hidden bg-cyan-800 bg-opacity-95">
+                <div class="p-4">
+                     <a href="fisiourense_clone.html#contacto" class="block w-full bg-cyan-500 text-white font-semibold px-6 py-3 rounded-full text-center hover:bg-cyan-600">PIDE CITA</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Sección Héroe -->
+            <section class="relative h-[60vh] flex items-center justify-center text-white text-center hero-bg-estetica">
+                <div class="relative z-10 px-4">
+                    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Fisiourense Estética</h1>
+                    <p class="text-lg md:text-xl max-w-2xl mx-auto mt-4 font-light">La unión perfecta entre salud y belleza, con la garantía de un profesional sanitario.</p>
+                </div>
+            </section>
+
+            <!-- Contenido Principal -->
+            <div class="bg-white py-20">
+                <div class="container mx-auto px-4">
+                    <!-- Introducción -->
+                    <section class="max-w-4xl mx-auto scroll-animate">
+                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-6">Belleza que nace de la salud</h2>
+                        <p class="text-gray-600 leading-relaxed text-center mb-8">
+                           Fisiourense Estética, también conocida como fisioterapia dermatofuncional, es la especialidad que aplica los conocimientos de la fisioterapia al campo de la estética. Nuestro enfoque va más allá de un tratamiento superficial; buscamos la regeneración de los tejidos desde el interior, combinando la tecnología más avanzada con técnicas manuales para obtener resultados visibles, duraderos y siempre con un fundamento en la salud.
+                        </p>
+                    </section>
+
+                    <!-- Áreas de Actuación -->
+                    <section class="mt-20 scroll-animate">
+                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">Nuestros tratamientos destacados</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            <!-- Radiofrecuencia (Diatermia) -->
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1515688594390-b649fe58715a?q=80&w=1964&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Radiofrecuencia Facial y Corporal</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Radiofrecuencia (Diatermia)</h3>
+                                        <p class="text-gray-600 text-sm">Estimula la producción de colágeno y elastina desde las capas más profundas de la piel. Ideal para tratar la flacidez, reducir arrugas, redefinir el óvalo facial y combatir la celulitis.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Drenaje Linfático Manual -->
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028269?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Drenaje Linfático Manual</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Drenaje Linfático Manual</h3>
+                                        <p class="text-gray-600 text-sm">Técnica manual suave destinada a eliminar líquidos y toxinas. Perfecta para reducir edemas, piernas cansadas, bolsas en los ojos y como complemento en postoperatorios.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Presoterapia -->
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1633613349984-711585814571?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Presoterapia</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Presoterapia</h3>
+                                        <p class="text-gray-600 text-sm">Sistema de compresión de aire para estimular la circulación y el drenaje linfático. Ayuda a combatir la celulitis, la retención de líquidos y mejora la recuperación muscular.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tratamientos Post-parto -->
+                             <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Tratamientos Post-parto</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Tratamientos Post-parto</h3>
+                                        <p class="text-gray-600 text-sm">Programas personalizados para la recuperación de la diástasis abdominal, el tratamiento de la flacidez y la mejora del aspecto de la piel y cicatrices después del embarazo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Cicatrices y Adherencias -->
+                             <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1581092445837-a25a0735e580?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Cicatrices y Adherencias</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Cicatrices y Adherencias</h3>
+                                        <p class="text-gray-600 text-sm">Mediante terapia manual y tecnología, mejoramos la elasticidad y el aspecto de las cicatrices (postquirúrgicas, acné, etc.), evitando la formación de adherencias que limiten el movimiento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Rejuvenecimiento Facial -->
+                             <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                        <div class="card-bg-overlay"></div>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Rejuvenecimiento Facial</h3>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Rejuvenecimiento Facial</h3>
+                                        <p class="text-gray-600 text-sm">Combinamos radiofrecuencia con terapia manual para un efecto lifting sin cirugía. Reducimos arrugas, mejoramos la luminosidad y tonificamos los músculos faciales para un aspecto más joven.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Nuestra Filosofía -->
+                    <section class="mt-20 scroll-animate">
+                         <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">Nuestra Filosofía de Trabajo</h2>
+                         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1516912531804-77535b80951a?q=80&w=2070&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Tecnología de Vanguardia</h3>
+                                <p class="text-gray-600">Invertimos en la aparatología más eficaz y segura del mercado para garantizarte los mejores resultados.</p>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Diagnóstico Personalizado</h3>
+                                <p class="text-gray-600">Cada piel y cada cuerpo son únicos. Realizamos una valoración exhaustiva para diseñar un protocolo a tu medida.</p>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=2070&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Enfoque Salud-Belleza</h3>
+                                <p class="text-gray-600">Nuestros tratamientos no solo mejoran tu aspecto, sino que promueven la salud y el correcto funcionamiento de tus tejidos.</p>
+                            </div>
+                         </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <section class="bg-cyan-700 py-20 text-white text-center scroll-animate">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-4">Descubre la mejor versión de ti misma</h2>
+                    <p class="max-w-xl mx-auto mb-8">Déjanos cuidar de tu piel y tu cuerpo con la seguridad y el conocimiento de un profesional sanitario. Pide tu cita de valoración gratuita.</p>
+                    <a href="fisiourense_clone.html#contacto" class="bg-white text-cyan-700 font-bold px-8 py-4 rounded-full hover:bg-cyan-100 transition-all duration-300 transform hover:scale-105 text-lg">Pide tu cita ahora</a>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-cyan-900 text-white">
+            <div class="container mx-auto px-4 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+                    <a href="fisiourense_clone.html">
+                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto" style="filter: brightness(0) invert(1);">
+                    </a>
+                     <div class="flex items-center space-x-6 text-cyan-200">
+                        <a href="fisiourense_clone.html" class="hover:text-white transition-colors">Volver a Inicio</a>
+                    </div>
+                     <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a>
+                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a>
+                    </div>
+                </div>
+                 <div class="border-t border-cyan-800 mt-8 pt-6 text-center text-sm text-cyan-300">
+                    <p>&copy; 2024 Fisiourense. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    
+        // --- Lógica para el encabezado pegajoso y cambio de logo ---
+        const header = document.getElementById('header');
+        const logoImg = document.querySelector('#logo img');
+        const pideCitaButton = document.querySelector('header a[href*="#contacto"]');
+        const mobileMenuButtonIcon = document.querySelector('#mobile-menu-button i');
+
+        // Función para aplicar estilos al hacer scroll
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white', 'shadow-lg');
+                logoImg.style.filter = 'none'; // Logo original
+                if(pideCitaButton) {
+                   pideCitaButton.classList.remove('bg-cyan-500', 'text-white');
+                   pideCitaButton.classList.add('bg-cyan-600', 'text-white');
+                }
+                if(mobileMenuButtonIcon) {
+                    mobileMenuButtonIcon.classList.remove('text-white');
+                    mobileMenuButtonIcon.classList.add('text-cyan-800');
+                }
+
+            } else {
+                header.classList.remove('bg-white', 'shadow-lg');
+                logoImg.style.filter = 'brightness(0) invert(1)'; // Logo en blanco
+                if(pideCitaButton) {
+                    pideCitaButton.classList.add('bg-cyan-500', 'text-white');
+                    pideCitaButton.classList.remove('bg-cyan-600');
+                }
+                if(mobileMenuButtonIcon) {
+                    mobileMenuButtonIcon.classList.add('text-white');
+                    mobileMenuButtonIcon.classList.remove('text-cyan-800');
+                }
+            }
+        };
+
+        // Eventos para el scroll y carga de la página
+        window.addEventListener('scroll', handleScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+             handleScroll(); // Ejecutar al cargar para estado inicial correcto
+             lucide.createIcons(); // Asegurarse de que los iconos se renderizan
+        });
+
+        // --- Lógica para el menú móvil ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Lógica para animaciones de scroll ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

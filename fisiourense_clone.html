@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisiourense - Fisioterapia Avanzada y Bienestar en Ourense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 20, 30, 0.7), rgba(0, 20, 30, 0.7)), url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757596261/83094eba-7dd7-44ac-b46b-69ac582aa955_gjxasq.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Estilos para las tarjetas de servicio 3D */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 350px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .flip-card-front {
+            color: white;
+        }
+        .flip-card-back {
+            background-color: white;
+            color: #111827;
+            transform: rotateY(180deg);
+            padding: 1.5rem;
+            flex-direction: column;
+        }
+        .card-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 83, 109, 0.9) 0%, rgba(0, 109, 135, 0.5) 100%);
+            z-index: 1;
+        }
+
+        /* Estilos para carruseles */
+        .carousel-item {
+            flex: 0 0 100%;
+        }
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.333%;
+            }
+        }
+
+        /* Estilos para animación de scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .scroll-animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 text-gray-800">
+
+<div class="max-w-screen-xl mx-auto bg-gray-50 shadow-2xl">
+
+    <!-- Encabezado y Navegación -->
+    <header id="header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-screen-xl z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
+                <a href="#" id="logo">
+                    <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto transition-all duration-300">
+                </a>
+                <div class="hidden md:flex items-center space-x-4 font-medium">
+                    <a href="#inicio" class="font-medium rounded-lg px-5 py-2 transition-all duration-300 transform hover:-translate-y-px hover:shadow-lg text-white border border-white/30 hover:bg-white/10">INICIO</a>
+                    <a href="#servicios" class="font-medium rounded-lg px-5 py-2 transition-all duration-300 transform hover:-translate-y-px hover:shadow-lg text-white border border-white/30 hover:bg-white/10">SERVICIOS</a>
+                    <a href="#nosotros" class="font-medium rounded-lg px-5 py-2 transition-all duration-300 transform hover:-translate-y-px hover:shadow-lg text-white border border-white/30 hover:bg-white/10">NOSOTROS</a>
+                    <a href="#contacto" class="font-medium rounded-lg px-5 py-2 transition-all duration-300 transform hover:-translate-y-px hover:shadow-lg text-white border border-white/30 hover:bg-white/10">CONTACTO</a>
+                </div>
+                <a href="#contacto" class="hidden md:inline-block bg-cyan-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">PIDE CITA</a>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <i data-lucide="menu" class="h-8 w-8"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyan-800 bg-opacity-95">
+            <a href="#inicio" class="block text-white text-center py-3 hover:bg-cyan-700">INICIO</a>
+            <a href="#servicios" class="block text-white text-center py-3 hover:bg-cyan-700">SERVICIOS</a>
+            <a href="#nosotros" class="block text-white text-center py-3 hover:bg-cyan-700">NOSOTROS</a>
+            <a href="#contacto" class="block text-white text-center py-3 hover:bg-cyan-700">CONTACTO</a>
+            <div class="p-4">
+                 <a href="#contacto" class="block w-full bg-cyan-500 text-white font-semibold px-6 py-3 rounded-full text-center hover:bg-cyan-600">PIDE CITA</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Héroe -->
+        <section id="inicio" class="relative h-screen flex items-center justify-center text-white text-center hero-bg">
+            <div class="relative z-20 px-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">LA EXCELENCIA EN FISIOTERAPIA DESDE HACE 25 AÑOS</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 font-light">Más de 15.000 pacientes han confiado en nosotros. Calidad, especialización y un trato personalizado para tu bienestar.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#servicios" class="bg-gray-100 text-cyan-700 font-semibold px-8 py-3 rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg">DESCUBRE NUESTROS SERVICIOS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Por Qué Elegirnos -->
+        <section id="por-que-elegirnos" class="py-20 bg-white scroll-animate">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-cyan-800">TU SALUD, NUESTRA PRIORIDAD</h2>
+                     <p class="max-w-3xl mx-auto text-gray-600 mt-4">Combinamos experiencia, tecnología y un profundo enfoque humano para ofrecerte la mejor atención.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center p-6 transition-transform duration-300 hover:scale-105">
+                        <div class="relative h-20 w-20 mx-auto mb-4">
+                            <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757591526/Generated_Image_September_11_2025_-_1_33PM_ndysiy.png" alt="Manos sosteniendo una columna vertebral digital que representa calidad y especialización" class="h-full w-full object-cover rounded-full shadow-md">
+                        </div>
+                        <h3 class="font-bold text-lg text-cyan-900 mb-2">Calidad y Especialización</h3>
+                        <p class="text-gray-600 text-sm">Nuestro equipo está en formación continua para aplicar las técnicas más avanzadas y efectivas.</p>
+                    </div>
+                     <div class="text-center p-6 transition-transform duration-300 hover:scale-105">
+                        <div class="relative h-20 w-20 mx-auto mb-4">
+                             <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757591649/Generated_Image_September_11_2025_-_1_53PM_o1ucn9.png" alt="Ilustración del enfoque personalizado en el paciente" class="h-full w-full object-cover rounded-full shadow-md">
+                        </div>
+                        <h3 class="font-bold text-lg text-cyan-900 mb-2">Enfoque en el Paciente</h3>
+                        <p class="text-gray-600 text-sm">Cada tratamiento es 100% personalizado, diseñado específicamente para tus necesidades y objetivos.</p>
+                    </div>
+                     <div class="text-center p-6 transition-transform duration-300 hover:scale-105">
+                        <div class="relative h-20 w-20 mx-auto mb-4">
+                             <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757591851/Generated_Image_September_11_2025_-_1_55PM_vwyidh.png" alt="Instalaciones modernas y equipamiento de Fisiourense" class="h-full w-full object-cover rounded-full shadow-md">
+                        </div>
+                        <h3 class="font-bold text-lg text-cyan-900 mb-2">Instalaciones Modernas</h3>
+                        <p class="text-gray-600 text-sm">Contamos con amplios espacios y equipamiento de última generación para tu recuperación.</p>
+                    </div>
+                     <div class="text-center p-6 transition-transform duration-300 hover:scale-105">
+                        <div class="relative h-20 w-20 mx-auto mb-4">
+                            <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757605383/Generated_Image_September_11_2025_-_5_42PM_dgmfjr.png" alt="Comunicación clara y transparente entre fisioterapeuta y paciente" class="h-full w-full object-cover rounded-full shadow-md">
+                        </div>
+                        <h3 class="font-bold text-lg text-cyan-900 mb-2">Comunicación y Transparencia</h3>
+                        <p class="text-gray-600 text-sm">Te explicamos cada paso de tu tratamiento para que seas parte activa de tu mejoría.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="py-20 bg-gray-50 scroll-animate">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-cyan-800">SERVICIOS INTEGRALES PARA TU BIENESTAR</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-12">Pasa el ratón sobre cada servicio para descubrir más. Ofrecemos un enfoque 360° para cuidar de ti.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tarjeta Fisioterapia -->
+                    <a href="fisioterapia.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757605716/Generated_Image_September_11_2025_-_5_48PM_epvvyu.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Fisioterapia</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Fisioterapia</h3>
+                                    <p class="text-gray-600">Recuperación de lesiones, tratamiento del dolor y mejora de la movilidad con técnicas manuales y aparatología avanzada.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Tarjeta Fisioterapia Deportiva -->
+                    <a href="fisioterapia-deportiva.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757606662/Generated_Image_September_11_2025_-_5_53PM_1_tyodfn.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Fisioterapia Deportiva</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Fisioterapia Deportiva</h3>
+                                    <p class="text-gray-600">Prevención, tratamiento y readaptación de lesiones en deportistas para optimizar el rendimiento y acelerar la vuelta al juego.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Tarjeta Osteopatía -->
+                    <a href="osteopatia.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                 <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757607031/Generated_Image_September_11_2025_-_5_56PM_rvdmam.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Osteopatía</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Osteopatía</h3>
+                                    <p class="text-gray-600">Terapia holística que busca el origen del problema para reequilibrar el cuerpo, tratando el sistema músculo-esquelético, visceral y craneal.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Tarjeta Nutrición -->
+                    <a href="nutricion.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757607145/Generated_Image_September_11_2025_-_6_11PM_dmpnuo.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Nutrición</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Nutrición</h3>
+                                    <p class="text-gray-600">Planes de alimentación personalizados para mejorar tu salud, alcanzar tus objetivos de peso y potenciar los resultados de tu tratamiento.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Tarjeta Entrenador Personal -->
+                    <a href="entrenador-personal.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757607295/Generated_Image_September_11_2025_-_6_14PM_iharib.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Entrenador Personal</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Entrenador Personal</h3>
+                                    <p class="text-gray-600">Programas de ejercicio individualizados para la readaptación de lesiones, mejora de la condición física y consecución de metas deportivas.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                     <!-- Tarjeta Fisiourense Estética -->
+                    <a href="estetica.html" class="block">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front" style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757606337/Generated_Image_September_11_2025_-_5_58PM_lyiikh.png'); background-size: cover; background-position: center;">
+                                    <div class="card-bg-overlay"></div>
+                                    <h3 class="relative z-10 text-2xl font-bold">Fisiourense Estética</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold text-cyan-800 mb-3">Fisiourense Estética</h3>
+                                    <p class="text-gray-600">Tratamientos de estética avanzada que combinan salud y belleza, utilizando la última tecnología para el cuidado facial y corporal.</p>
+                                    <p class="mt-4 font-semibold text-cyan-600 italic">Haz clic para saber más</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Sobre Nosotros y Galería -->
+        <section id="nosotros" class="py-20 bg-white scroll-animate">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-cyan-800 mb-4">Un equipo apasionado por tu recuperación</h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                           En Fisiourense, nuestra mayor satisfacción es ser testigos de tu mejoría. Llevamos 25 años dedicados a la fisioterapia, combinando un trato cercano y humano con la máxima profesionalidad. Creemos en la escucha activa para entender no solo tus síntomas, sino tus metas, y así diseñar un camino de recuperación conjunto.
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Tu confianza es nuestro mayor activo. Por eso, nos esforzamos cada día en ofrecerte un espacio donde te sientas seguro, comprendido y en las mejores manos.
+                        </p>
+                    </div>
+                     <div class="lg:w-1/2 w-full">
+                        <div class="relative shadow-2xl rounded-2xl overflow-hidden">
+                             <div id="gallery-slider" class="flex transition-transform duration-500 ease-in-out">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757593540/Generated_Image_September_11_2025_-_2_25PM_wl26k8.png" alt="Fisioterapeuta aplicando terapia manual en la espalda de un paciente" class="w-full object-cover aspect-video flex-shrink-0">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757593540/Generated_Image_September_11_2025_-_2_24PM_zulw6t.png" alt="Interior de la clínica Fisiourense con camillas y equipamiento" class="w-full object-cover aspect-video flex-shrink-0">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757593541/Generated_Image_September_11_2025_-_2_24PM_2_elz2wu.png" alt="Especialista realizando un tratamiento de fisioterapia en una pierna" class="w-full object-cover aspect-video flex-shrink-0">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757593541/Generated_Image_September_11_2025_-_2_24PM_1_wc56jf.png" alt="Sala de rehabilitación con material deportivo y de entrenamiento" class="w-full object-cover aspect-video flex-shrink-0">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757593542/Generated_Image_September_11_2025_-_2_24PM_3_qdegfj.png" alt="Fisioterapeuta trabajando con un paciente en la recuperación de la movilidad del brazo" class="w-full object-cover aspect-video flex-shrink-0">
+                            </div>
+                            <button id="prev-gallery" class="absolute top-1/2 -translate-y-1/2 left-2 bg-white/70 p-2 rounded-full hover:bg-white"><i data-lucide="chevron-left"></i></button>
+                            <button id="next-gallery" class="absolute top-1/2 -translate-y-1/2 right-2 bg-white/70 p-2 rounded-full hover:bg-white"><i data-lucide="chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sección de Testimonios -->
+        <section id="testimonios" class="py-20 bg-gray-50 scroll-animate">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-cyan-800 mb-12">LA SATISFACCIÓN DE NUESTROS PACIENTES</h2>
+                <div class="relative">
+                    <div class="overflow-hidden">
+                        <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Testimonios... -->
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"Un trato inmejorable y muy profesional. Llegué con un dolor de espalda terrible y salí como nuevo. ¡Totalmente recomendable!"</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">Carlos Pérez</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"Después de mi lesión de rodilla, pensaba que no volvería a correr. Gracias al equipo de Fisiourense, he vuelto a competir sin dolor."</p>
+                                     <div>
+                                        <h4 class="font-bold text-cyan-900">Laura Gómez</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"El tratamiento de osteopatía me ha cambiado la vida. Adiós a las migrañas y a la tensión cervical. Unos profesionales excelentes."</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">Ana Fernández</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nuevos testimonios -->
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"El servicio de nutrición es el complemento perfecto. He aprendido a comer mejor y mi recuperación física ha sido mucho más rápida."</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">David López</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"Como deportista, la fisioterapia deportiva aquí es de otro nivel. Entienden perfectamente las exigencias y cómo acelerar la vuelta."</p>
+                                     <div>
+                                        <h4 class="font-bold text-cyan-900">Sofía Castro</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"Acudí por el servicio de entrenador personal para readaptar mi hombro y el resultado ha sido espectacular. ¡Gracias por la paciencia!"</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">Javier Torres</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"Los tratamientos de Fisiourense Estética son fantásticos. Profesionalidad y tecnología de vanguardia con resultados visibles."</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">Elena Vázquez</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="carousel-item p-4">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                                    <p class="text-gray-600 mb-6 italic">"No solo tratan lesiones, también te enseñan a prevenirlas. Un enfoque integral que valoro muchísimo. Grandes profesionales."</p>
+                                    <div>
+                                        <h4 class="font-bold text-cyan-900">Marcos Rey</h4>
+                                        <div class="flex text-yellow-500 mt-2"><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prev-testimonial" class="absolute top-1/2 -translate-y-1/2 -left-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 hidden md:block"><i data-lucide="chevron-left"></i></button>
+                    <button id="next-testimonial" class="absolute top-1/2 -translate-y-1/2 -right-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 hidden md:block"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="py-20 bg-cyan-700 text-white scroll-animate">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">DA EL PRIMER PASO HACIA TU RECUPERACIÓN</h2>
+                    <p class="max-w-2xl mx-auto mt-2 opacity-90">Nos encontrarás en el corazón de Ourense. ¡Ven a visitarnos!</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Mapa -->
+                    <div class="w-full h-96 lg:h-full rounded-2xl overflow-hidden shadow-2xl">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2959.136618491325!2d-7.86872968455113!3d42.34001997918816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2ffeb5947a7e8b%3A0xe2a38a2e1c073a46!2sAv.%20de%20Portugal%2C%2032%2C%2032002%20Ourense!5e0!3m2!1ses!2ses!4v1678886543210!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <!-- Información de contacto -->
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-cyan-600 p-4 rounded-full"><i data-lucide="map-pin" class="h-7 w-7"></i></div>
+                            <div>
+                                <h3 class="font-bold text-xl">Dirección</h3>
+                                <p class="opacity-80 text-lg">Avda. Portugal 32, 32002 Ourense</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-cyan-600 p-4 rounded-full"><i data-lucide="phone" class="h-7 w-7"></i></div>
+                            <div>
+                                <h3 class="font-bold text-xl">Teléfono</h3>
+                                <p class="opacity-80 text-lg">988 123 456</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-4">
+                            <div class="bg-cyan-600 p-4 rounded-full"><i data-lucide="clock" class="h-7 w-7"></i></div>
+                            <div>
+                                <h3 class="font-bold text-xl">Horario</h3>
+                                <p class="opacity-80 text-lg">Lunes a Viernes: 9:00 - 21:00</p>
+                            </div>
+                        </div>
+
+                        <!-- ✨ GEMINI FEATURE: Symptom Analyzer -->
+                        <div class="bg-cyan-600 p-6 rounded-2xl shadow-inner">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="sparkles" class="h-7 w-7 text-yellow-300"></i>
+                                <h3 class="font-bold text-xl">¿No sabes qué tratamiento necesitas?</h3>
+                            </div>
+                            <p class="opacity-80 text-sm mb-4">Describe brevemente tu dolencia o molestia y nuestra IA te orientará sobre qué servicio podría ser el más adecuado para ti.</p>
+                            <textarea id="symptom-input" class="w-full h-24 p-3 rounded-lg text-gray-800 text-sm focus:ring-2 focus:ring-cyan-400 focus:outline-none" placeholder="Ej: Tengo un dolor agudo en el hombro derecho al levantar el brazo..."></textarea>
+                            <button id="analyze-btn" class="mt-4 w-full bg-yellow-300 text-cyan-800 font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">Analizar mis síntomas</button>
+                            <div id="gemini-result" class="mt-4 p-4 bg-cyan-800 rounded-lg text-sm hidden">
+                                <!-- Loading spinner -->
+                                <div id="loading-spinner" class="flex justify-center items-center">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span class="ml-3">Analizando...</span>
+                                </div>
+                                <p id="result-text"></p>
+                            </div>
+                        </div>
+                        
+                        <a href="#contacto" class="inline-block w-full text-center bg-white text-cyan-700 font-bold px-8 py-4 rounded-full hover:bg-cyan-100 transition-all duration-300 transform hover:scale-105 text-lg">SOLICITAR CITA</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-cyan-900 text-white">
+        <!-- Modal de Política de Privacidad -->
+        <div id="privacy-modal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden items-center justify-center p-4" style="display: none;">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+                <div class="p-5 border-b flex justify-between items-center sticky top-0 bg-white">
+                    <h3 class="text-xl font-bold text-cyan-800">Política de Privacidad y Protección de Datos</h3>
+                    <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800">
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                <div class="p-6 space-y-4 text-sm text-gray-700 leading-relaxed overflow-y-auto">
+                    <p>De conformidad con lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (RGPD) y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD), le informamos sobre el tratamiento de sus datos personales:</p>
+    
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">1. Responsable del Tratamiento</h4>
+                    <p><strong>Identidad:</strong> FISIOURENSE<br><strong>Dirección:</strong> Avda. Portugal 32, 32002 Ourense<br><strong>Teléfono:</strong> 988 123 456</p>
+
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">2. Finalidad del Tratamiento</h4>
+                    <p>Sus datos personales serán tratados con las siguientes finalidades:<br>
+                    - Gestionar la cita solicitada y las comunicaciones necesarias para la misma.<br>
+                    - Prestar los servicios de fisioterapia, osteopatía y otros tratamientos solicitados, incluyendo la creación y gestión de su historial clínico.<br>
+                    - Realizar la gestión administrativa, contable y fiscal derivada de la prestación del servicio.<br>
+                    - Enviarle comunicaciones informativas sobre nuestros servicios, promociones o consejos de salud, siempre que contemos con su consentimiento explícito.</p>
+
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">3. Legitimación</h4>
+                    <p>La base legal para el tratamiento de sus datos es la ejecución de un contrato de prestación de servicios y el consentimiento expreso otorgado por usted para finalidades específicas.</p>
+
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">4. Conservación de los Datos</h4>
+                    <p>Los datos personales se conservarán mientras dure la relación asistencial y, una vez finalizada, durante los plazos legalmente exigidos por la normativa sanitaria y fiscal.</p>
+
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">5. Destinatarios</h4>
+                    <p>Sus datos no serán cedidos a terceros, salvo por obligación legal o cuando sea estrictamente necesario para la prestación del servicio (por ejemplo, a laboratorios o especialistas con su consentimiento).</p>
+
+                    <h4 class="font-bold text-md text-cyan-900 pt-2">6. Derechos del Interesado</h4>
+                    <p>Usted tiene derecho a acceder, rectificar, suprimir sus datos, así como a la limitación y oposición a su tratamiento. Para ejercer sus derechos, puede dirigirse por escrito a nuestra dirección postal o a través de los medios de contacto facilitados en esta web, adjuntando una copia de su DNI.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+                <a href="#">
+                    <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto" style="filter: brightness(0) invert(1);">
+                </a>
+                 <div class="flex items-center space-x-6 text-cyan-200">
+                    <a href="#inicio" class="hover:text-white transition-colors">Inicio</a>
+                    <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+                    <a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a>
+                </div>
+                 <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a>
+                    <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a>
+                </div>
+            </div>
+             <div class="border-t border-cyan-800 mt-8 pt-6 text-center text-sm text-cyan-300">
+                <p>&copy; 2024 Fisiourense. Todos los derechos reservados.</p>
+                <a href="#" id="privacy-link" class="underline hover:text-white mt-2 inline-block">Política de Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- Lógica para el encabezado pegajoso y cambio de logo ---
+        const header = document.getElementById('header');
+        const logoImg = document.querySelector('#logo img');
+        const navButtons = document.querySelectorAll('nav a.font-medium');
+        const mobileMenuButtonIcon = document.querySelector('#mobile-menu-button');
+
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white', 'shadow-lg');
+                logoImg.style.filter = 'none'; // Quitar filtro para ver logo original
+                
+                navButtons.forEach(button => {
+                    button.classList.remove('text-white', 'border-white/30', 'hover:bg-white/10');
+                    button.classList.add('text-cyan-800', 'border-transparent', 'hover:bg-gray-100');
+                });
+                
+                mobileMenuButtonIcon.classList.remove('text-white');
+                mobileMenuButtonIcon.classList.add('text-cyan-800');
+
+            } else {
+                header.classList.remove('bg-white', 'shadow-lg');
+                logoImg.style.filter = 'brightness(0) invert(1)'; // Poner logo blanco
+                
+                navButtons.forEach(button => {
+                    button.classList.add('text-white', 'border-white/30', 'hover:bg-white/10');
+                    button.classList.remove('text-cyan-800', 'border-transparent', 'hover:bg-gray-100');
+                });
+                
+                mobileMenuButtonIcon.classList.add('text-white');
+                mobileMenuButtonIcon.classList.remove('text-cyan-800');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        document.addEventListener('DOMContentLoaded', handleScroll);
+
+
+        // --- Lógica para el menú móvil ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Lógica para Carruseles ---
+        function setupCarousel(sliderId, prevBtnId, nextBtnId, itemClass) {
+            const slider = document.getElementById(sliderId);
+            if (!slider) return;
+
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            const items = slider.querySelectorAll(`.${itemClass}`);
+            if (!items || items.length === 0) return;
+
+            let currentIndex = 0;
+            const totalItems = items.length;
+
+            function getItemsPerView() {
+                if (sliderId !== 'testimonial-slider') return 1;
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 768) return 2;
+                return 1;
+            }
+
+            function updateCarousel() {
+                const itemsPerView = getItemsPerView();
+                const maxIndex = totalItems > itemsPerView ? totalItems - itemsPerView : 0;
+                
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                if (currentIndex < 0) currentIndex = 0;
+
+                if (sliderId === 'gallery-slider') {
+                    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                } else {
+                    slider.style.width = `${(totalItems / itemsPerView) * 100}%`;
+                    slider.style.transform = `translateX(-${currentIndex * (100 / totalItems)}%)`;
+                }
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                const itemsPerView = getItemsPerView();
+                if (sliderId === 'gallery-slider') {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
+                } else {
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = totalItems > itemsPerView ? totalItems - itemsPerView : 0;
+                    }
+                }
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const itemsPerView = getItemsPerView();
+                const maxIndex = totalItems > itemsPerView ? totalItems - itemsPerView : 0;
+                if (sliderId === 'gallery-slider') {
+                    currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+                } else {
+                    currentIndex++;
+                    if (currentIndex > maxIndex) {
+                        currentIndex = 0;
+                    }
+                }
+                updateCarousel();
+            });
+
+            if (sliderId === 'gallery-slider') {
+                setInterval(() => nextBtn.click(), 4000);
+            }
+
+            window.addEventListener('resize', updateCarousel);
+            document.addEventListener('DOMContentLoaded', updateCarousel);
+        }
+
+        setupCarousel('testimonial-slider', 'prev-testimonial', 'next-testimonial', 'carousel-item');
+        setupCarousel('gallery-slider', 'prev-gallery', 'next-gallery', 'flex-shrink-0');
+        
+        // --- Lógica para el modal de privacidad ---
+        const privacyModal = document.getElementById('privacy-modal');
+        const privacyLink = document.getElementById('privacy-link');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        if (privacyLink && privacyModal && closeModalBtn) {
+            privacyLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyModal.style.display = 'flex';
+                lucide.createIcons();
+            });
+
+            const closeModal = () => {
+                privacyModal.style.display = 'none';
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            privacyModal.addEventListener('click', (e) => {
+                if (e.target === privacyModal) {
+                    closeModal();
+                }
+            });
+        }
+        
+        // --- Lógica para el Analizador de Síntomas con Gemini API ---
+        
+        async function fetchWithBackoff(url, options, retries = 3, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.ok) return response;
+                    if (response.status >= 400 && response.status < 500) {
+                       throw new Error(`Error del cliente: ${response.statusText}`);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                }
+            }
+            throw new Error("No se pudo completar la solicitud después de varios intentos.");
+        }
+
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const symptomInput = document.getElementById('symptom-input');
+        const geminiResultDiv = document.getElementById('gemini-result');
+        const resultText = document.getElementById('result-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        if (analyzeBtn) {
+            analyzeBtn.addEventListener('click', async () => {
+                const userInput = symptomInput.value;
+                if (!userInput.trim()) {
+                    resultText.innerHTML = "Por favor, describe tu dolencia en el cuadro de texto.";
+                    geminiResultDiv.classList.remove('hidden');
+                    loadingSpinner.style.display = 'none';
+                    resultText.style.display = 'block';
+                    return;
+                }
+
+                geminiResultDiv.classList.remove('hidden');
+                loadingSpinner.style.display = 'flex';
+                resultText.style.display = 'none';
+                resultText.innerHTML = '';
+
+                const apiKey = "AIzaSyBlScHb5NKOISxYRuCVb0BvPXHaZ6xSjfE"; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const systemPrompt = "Actúas como un asistente virtual para Fisiourense, una clínica de fisioterapia en Ourense, España. Eres amable, profesional y tu objetivo es orientar al usuario, nunca diagnosticar. Tu conocimiento se basa en los servicios que ofrece la clínica: Fisioterapia, Fisioterapia Deportiva, Osteopatía, Nutrición, Entrenador Personal y Fisiourense Estética.";
+                
+                const userQuery = `Un paciente describe su problema de la siguiente manera: '${userInput}'. Basándote en esta descripción, sugiere 1 o 2 servicios de Fisiourense que podrían ser más relevantes para él. Explica brevemente y en un lenguaje sencillo por qué cada servicio podría ayudar. Después de las sugerencias, añade un consejo general muy breve (ej. evitar movimientos bruscos, aplicar frío/calor si corresponde, etc.). Finalmente, y de forma obligatoria, añade el siguiente descargo de responsabilidad en negrita: '**Importante: Esta es una orientación y no sustituye un diagnóstico profesional. Te recomendamos que pidas una cita para que uno de nuestros especialistas pueda evaluar tu caso de forma personalizada.**'`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const response = await fetchWithBackoff(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        let generatedText = candidate.content.parts[0].text;
+                        generatedText = generatedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        generatedText = generatedText.replace(/\n/g, '<br>');
+                        resultText.innerHTML = generatedText;
+                    } else {
+                        throw new Error("No se pudo obtener una respuesta válida del asistente.");
+                    }
+
+                } catch (error) {
+                    console.error("Error al llamar a la API de Gemini:", error);
+                    resultText.innerHTML = "Lo sentimos, ha ocurrido un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde o llámanos directamente.";
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                    resultText.style.display = 'block';
+                }
+            });
+        }
+        
+        // --- Lógica para animaciones de scroll ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+    </script>
+</body>
+</html>
+
