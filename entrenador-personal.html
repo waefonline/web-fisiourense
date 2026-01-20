@@ -8,83 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .hero-bg-entrenador {
-            background-image: linear-gradient(rgba(0, 20, 30, 0.7), rgba(0, 20, 30, 0.7)), url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757607295/Generated_Image_September_11_2025_-_6_14PM_iharib.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Estilos para animación de scroll */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-
-        .scroll-animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Estilos para las tarjetas de servicio 3D */
-        .flip-card {
-            background-color: transparent;
-            width: 100%;
-            height: 350px;
-            perspective: 1000px;
-        }
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-            cursor: default;
-        }
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .flip-card-front {
-            color: white;
-        }
-        .flip-card-back {
-            background-color: white;
-            color: #111827;
-            transform: rotateY(180deg);
-            padding: 1.5rem;
-            flex-direction: column;
-        }
-        .card-bg-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 83, 109, 0.9) 0%, rgba(0, 109, 135, 0.5) 100%);
-            z-index: 1;
-        }
+    <link rel="stylesheet" href="css/styles.css">
     </style>
 </head>
 
@@ -93,34 +20,42 @@
     <div class="max-w-screen-xl mx-auto bg-gray-50 shadow-2xl">
 
         <!-- Encabezado y Navegación -->
-        <header id="header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-screen-xl z-50 transition-all duration-300">
+        <header id="header"
+            class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-screen-xl z-50 transition-all duration-300">
             <div class="container mx-auto px-4">
                 <nav class="flex justify-between items-center py-4">
-                    <a href="fisiourense_clone.html" id="logo">
-                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto transition-all duration-300">
+                    <a href="index.html" id="logo">
+                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png"
+                            alt="Logotipo de Fisiourense" class="h-12 w-auto transition-all duration-300">
                     </a>
-                    
-                    <a href="fisiourense_clone.html#contacto" class="hidden md:inline-block bg-cyan-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">PIDE CITA</a>
-                    
+
+                    <a href="index.html#contacto"
+                        class="hidden md:inline-block bg-cyan-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">PIDE
+                        CITA</a>
+
                     <button id="mobile-menu-button" class="md:hidden text-white">
                         <i data-lucide="menu" class="h-8 w-8"></i>
                     </button>
                 </nav>
             </div>
-             <!-- Menú Móvil -->
+            <!-- Menú Móvil -->
             <div id="mobile-menu" class="hidden md:hidden bg-cyan-800 bg-opacity-95">
                 <div class="p-4">
-                     <a href="fisiourense_clone.html#contacto" class="block w-full bg-cyan-500 text-white font-semibold px-6 py-3 rounded-full text-center hover:bg-cyan-600">PIDE CITA</a>
+                    <a href="index.html#contacto"
+                        class="block w-full bg-cyan-500 text-white font-semibold px-6 py-3 rounded-full text-center hover:bg-cyan-600">PIDE
+                        CITA</a>
                 </div>
             </div>
         </header>
 
         <main>
             <!-- Sección Héroe -->
-            <section class="relative h-[60vh] flex items-center justify-center text-white text-center hero-bg-entrenador">
+            <section
+                class="relative h-[60vh] flex items-center justify-center text-white text-center hero-bg-entrenador">
                 <div class="relative z-10 px-4">
                     <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Entrenador Personal</h1>
-                    <p class="text-lg md:text-xl max-w-2xl mx-auto mt-4 font-light">Alcanza tus metas de forma segura y eficaz con un plan a tu medida.</p>
+                    <p class="text-lg md:text-xl max-w-2xl mx-auto mt-4 font-light">Alcanza tus metas de forma segura y
+                        eficaz con un plan a tu medida.</p>
                 </div>
             </section>
 
@@ -129,117 +64,103 @@
                 <div class="container mx-auto px-4">
                     <!-- Introducción -->
                     <section class="max-w-4xl mx-auto scroll-animate">
-                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-6">Un entrenamiento diseñado solo para ti</h2>
+                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-6">Movimiento, fuerza y salud
+                            supervisada</h2>
                         <p class="text-gray-600 leading-relaxed text-center mb-8">
-                           Nuestro servicio de entrenamiento personal va más allá de un simple programa de ejercicios. Es un compromiso con tus objetivos, supervisado por profesionales cualificados que te guiarán en cada paso. Ya sea para recuperarte de una lesión, mejorar tu rendimiento o simplemente sentirte mejor, creamos un plan seguro, motivador y, sobre todo, efectivo.
+                            Nuestro servicio de Entrenador Personal va más allá del ejercicio convencional. Integramos
+                            nuestro profundo conocimiento de la fisioterapia y la biomecánica para ofrecerte programas
+                            de entrenamiento seguros, personalizados y orientados a resultados. Ya sea para recuperarte
+                            de una lesión, mejorar tu rendimiento deportivo o simplemente para sentirte más fuerte y
+                            saludable, te guiaremos en cada paso del camino.
                         </p>
                     </section>
 
                     <!-- Áreas de Actuación -->
                     <section class="mt-20 scroll-animate">
-                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">Nuestros campos de actuación</h2>
+                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">Nuestros enfoques de
+                            entrenamiento</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                             <!-- Readaptación de Lesiones -->
                             <div class="flip-card">
                                 <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5792c5043?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                    <div class="flip-card-front"
+                                        style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757692282/Generated_Image_September_12_2025_-_5_44PM_voyfo6.png'); background-size: cover; background-position: center;">
                                         <div class="card-bg-overlay"></div>
                                         <h3 class="relative z-10 text-2xl font-bold px-4">Readaptación de Lesiones</h3>
                                     </div>
                                     <div class="flip-card-back">
                                         <h3 class="text-xl font-bold text-cyan-800 mb-3">Readaptación de Lesiones</h3>
-                                        <p class="text-gray-600 text-sm">El puente entre la fisioterapia y tu vuelta a la actividad. Programas de ejercicio terapéutico para recuperar la fuerza, la movilidad y la confianza en la zona lesionada, minimizando el riesgo de recaídas.</p>
+                                        <p class="text-gray-600 text-sm">Puente esencial entre la fisioterapia y la
+                                            vuelta a la actividad. Diseñamos programas progresivos para asegurar que la
+                                            zona lesionada recupere su fuerza y funcionalidad, minimizando el riesgo de
+                                            recaídas.</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Mejora del Rendimiento Deportivo -->
+                            <!-- Mejora del Rendimiento -->
                             <div class="flip-card">
                                 <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                    <div class="flip-card-front"
+                                        style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757692281/Generated_Image_September_12_2025_-_5_47PM_ngieik.png'); background-size: cover; background-position: center;">
                                         <div class="card-bg-overlay"></div>
                                         <h3 class="relative z-10 text-2xl font-bold px-4">Mejora del Rendimiento</h3>
                                     </div>
                                     <div class="flip-card-back">
                                         <h3 class="text-xl font-bold text-cyan-800 mb-3">Mejora del Rendimiento</h3>
-                                        <p class="text-gray-600 text-sm">Planificación específica para tu deporte. Analizamos tus fortalezas y debilidades para desarrollar programas que mejoren tu fuerza, velocidad, resistencia y agilidad, llevándote al siguiente nivel.</p>
+                                        <p class="text-gray-600 text-sm">Para deportistas que buscan un plus. Analizamos
+                                            tus patrones de movimiento, identificamos áreas de mejora y creamos un plan
+                                            de entrenamiento específico para potenciar tu fuerza, velocidad y
+                                            resistencia.</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Pérdida de Peso y Tonificación -->
+                            <!-- Salud y Bienestar -->
                             <div class="flip-card">
                                 <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1596357395217-e7de50678394?q=80&w=1974&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                                    <div class="flip-card-front"
+                                        style="background-image: url('https://res.cloudinary.com/djyfupa7x/image/upload/v1757692282/Generated_Image_September_12_2025_-_5_48PM_ngrcyd.png'); background-size: cover; background-position: center;">
                                         <div class="card-bg-overlay"></div>
-                                        <h3 class="relative z-10 text-2xl font-bold px-4">Pérdida de Peso y Tonificación</h3>
+                                        <h3 class="relative z-10 text-2xl font-bold px-4">Salud y Bienestar</h3>
                                     </div>
                                     <div class="flip-card-back">
-                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Pérdida de Peso y Tonificación</h3>
-                                        <p class="text-gray-600 text-sm">Entrenamientos eficientes y motivadores, combinados con nuestro servicio de nutrición, para ayudarte a alcanzar tus objetivos de composición corporal de forma saludable y sostenible.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Preparación de Oposiciones -->
-                             <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1574680096145-f844349f42bc?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
-                                        <div class="card-bg-overlay"></div>
-                                        <h3 class="relative z-10 text-2xl font-bold px-4">Preparación de Oposiciones</h3>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Preparación de Oposiciones</h3>
-                                        <p class="text-gray-600 text-sm">Preparamos las pruebas físicas de cualquier oposición (policía, bomberos, etc.). Planificamos tu entrenamiento para que llegues al día del examen en tu mejor condición física.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Entrenamiento para la Salud -->
-                             <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1536922246289-88c42a425752?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
-                                        <div class="card-bg-overlay"></div>
-                                        <h3 class="relative z-10 text-2xl font-bold px-4">Entrenamiento para la Salud</h3>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Entrenamiento para la Salud</h3>
-                                        <p class="text-gray-600 text-sm">Programas adaptados para personas con patologías (hipertensión, diabetes, osteoporosis) o para adultos mayores, enfocados en mejorar la calidad de vida y la autonomía funcional.</p>
-                                    </div>
-                                </div>
-                            </div>
-                             <!-- Entrenamiento Funcional -->
-                             <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
-                                        <div class="card-bg-overlay"></div>
-                                        <h3 class="relative z-10 text-2xl font-bold px-4">Entrenamiento Funcional</h3>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Entrenamiento Funcional</h3>
-                                        <p class="text-gray-600 text-sm">Entrenamientos basados en los movimientos de la vida diaria, utilizando material como kettlebells, TRX o bandas elásticas para mejorar la fuerza, el equilibrio y la coordinación de forma global.</p>
+                                        <h3 class="text-xl font-bold text-cyan-800 mb-3">Salud y Bienestar</h3>
+                                        <p class="text-gray-600 text-sm">Si tu objetivo es mejorar tu condición física
+                                            general, perder peso o simplemente mantenerte activo de forma segura, te
+                                            ofrecemos un entrenamiento adaptado a tu nivel y necesidades para que
+                                            disfrutes del movimiento.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    
-                    <!-- Nuestras Técnicas -->
+
+                    <!-- Beneficios -->
                     <section class="mt-20 scroll-animate">
-                         <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">Nuestra Metodología</h2>
-                         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center">
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1986&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
-                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Planificación Individualizada</h3>
-                                <p class="text-gray-600">Evaluamos tu condición inicial y tus objetivos para diseñar un programa progresivo y totalmente adaptado a ti.</p>
+                        <h2 class="text-3xl font-bold text-cyan-800 text-center mb-12">¿Por qué entrenar con nosotros?
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center">
+                            <div class="benefit-card">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757692546/Generated_Image_September_12_2025_-_5_54PM_l0rmzj.png"
+                                    class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Supervisión Profesional</h3>
+                                <p class="text-gray-600">Entrena con la tranquilidad de estar supervisado por
+                                    profesionales sanitarios que entienden tu cuerpo y tus límites.</p>
                             </div>
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1590487988256-5ed24a5a903c?q=80&w=2070&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
-                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Técnica y Corrección</h3>
-                                <p class="text-gray-600">Priorizamos la ejecución correcta de cada ejercicio para maximizar los resultados y minimizar el riesgo de lesión.</p>
+                            <div class="benefit-card">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757692756/Generated_Image_September_12_2025_-_5_58PM_fcmiw2.png"
+                                    class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Planes Individualizados</h3>
+                                <p class="text-gray-600">No hay dos personas iguales. Tu plan de entrenamiento se
+                                    diseñará desde cero basándose en una valoración inicial completa.</p>
                             </div>
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
-                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Motivación y Acompañamiento</h3>
-                                <p class="text-gray-600">Somos tu mayor apoyo. Te acompañamos en cada entrenamiento para que te mantengas enfocado y motivado.</p>
+                            <div class="benefit-card">
+                                <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757692824/Generated_Image_September_12_2025_-_6_00PM_l54r5s.png"
+                                    class="rounded-lg shadow-lg mb-4 h-56 w-full object-cover">
+                                <h3 class="font-bold text-xl text-cyan-900 mb-2">Motivación y Constancia</h3>
+                                <p class="text-gray-600">Te ayudamos a mantener la motivación, a establecer metas
+                                    realistas y a crear hábitos saludables que perduren en el tiempo.</p>
                             </div>
-                         </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -247,29 +168,35 @@
             <!-- CTA Section -->
             <section class="bg-cyan-700 py-20 text-white text-center scroll-animate">
                 <div class="container mx-auto px-4">
-                    <h2 class="text-3xl font-bold mb-4">Invierte en ti. Invierte en tu futuro.</h2>
-                    <p class="max-w-xl mx-auto mb-8">Da el paso definitivo hacia la consecución de tus objetivos. Contacta con nosotros y descubre cómo un entrenador personal puede cambiar tu vida.</p>
-                    <a href="fisiourense_clone.html#contacto" class="bg-white text-cyan-700 font-bold px-8 py-4 rounded-full hover:bg-cyan-100 transition-all duration-300 transform hover:scale-105 text-lg">Pide tu cita ahora</a>
+                    <h2 class="text-3xl font-bold mb-4">Transforma tu físico, mejora tu salud</h2>
+                    <p class="max-w-xl mx-auto mb-8">Da el paso definitivo hacia tus objetivos con la guía de un
+                        experto. Tu cuerpo te lo agradecerá.</p>
+                    <a href="index.html#contacto"
+                        class="bg-white text-cyan-700 font-bold px-8 py-4 rounded-full hover:bg-cyan-100 transition-all duration-300 transform hover:scale-105 text-lg">Empieza
+                        a entrenar hoy</a>
                 </div>
             </section>
         </main>
-        
+
         <!-- Footer -->
         <footer class="bg-cyan-900 text-white">
             <div class="container mx-auto px-4 py-8">
-                <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
-                    <a href="fisiourense_clone.html">
-                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png" alt="Logotipo de Fisiourense" class="h-12 w-auto" style="filter: brightness(0) invert(1);">
+                <div class="flex flex-col items-center gap-6">
+                    <a href="index.html">
+                        <img src="https://res.cloudinary.com/djyfupa7x/image/upload/v1757592863/Generated_Image_September_11__2025_-_2_11PM-removebg-preview_tkqvyp.png"
+                            alt="Logotipo de Fisiourense" class="h-12 w-auto" style="filter: brightness(0) invert(1);">
                     </a>
-                     <div class="flex items-center space-x-6 text-cyan-200">
-                        <a href="fisiourense_clone.html" class="hover:text-white transition-colors">Volver a Inicio</a>
+                    <div class="flex items-center space-x-6 text-cyan-200">
+                        <a href="index.html" class="hover:text-white transition-colors font-medium">Volver a Inicio</a>
                     </div>
-                     <div class="flex justify-center space-x-4">
-                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a>
-                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="instagram"
+                                class="h-6 w-6"></i></a>
+                        <a href="#" class="text-cyan-200 hover:text-white"><i data-lucide="facebook"
+                                class="h-6 w-6"></i></a>
                     </div>
                 </div>
-                 <div class="border-t border-cyan-800 mt-8 pt-6 text-center text-sm text-cyan-300">
+                <div class="border-t border-cyan-800 mt-8 pt-6 text-center text-sm text-cyan-300">
                     <p>&copy; 2024 Fisiourense. Todos los derechos reservados.</p>
                 </div>
             </div>
@@ -277,75 +204,7 @@
 
     </div>
 
-    <script>
-        lucide.createIcons();
-    
-        // --- Lógica para el encabezado pegajoso y cambio de logo ---
-        const header = document.getElementById('header');
-        const logoImg = document.querySelector('#logo img');
-        const pideCitaButton = document.querySelector('header a[href*="#contacto"]');
-        const mobileMenuButtonIcon = document.querySelector('#mobile-menu-button i');
-
-        // Función para aplicar estilos al hacer scroll
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                header.classList.add('bg-white', 'shadow-lg');
-                logoImg.style.filter = 'none'; // Logo original
-                if(pideCitaButton) {
-                   pideCitaButton.classList.remove('bg-cyan-500', 'text-white');
-                   pideCitaButton.classList.add('bg-cyan-600', 'text-white');
-                }
-                if(mobileMenuButtonIcon) {
-                    mobileMenuButtonIcon.classList.remove('text-white');
-                    mobileMenuButtonIcon.classList.add('text-cyan-800');
-                }
-
-            } else {
-                header.classList.remove('bg-white', 'shadow-lg');
-                logoImg.style.filter = 'brightness(0) invert(1)'; // Logo en blanco
-                if(pideCitaButton) {
-                    pideCitaButton.classList.add('bg-cyan-500', 'text-white');
-                    pideCitaButton.classList.remove('bg-cyan-600');
-                }
-                if(mobileMenuButtonIcon) {
-                    mobileMenuButtonIcon.classList.add('text-white');
-                    mobileMenuButtonIcon.classList.remove('text-cyan-800');
-                }
-            }
-        };
-
-        // Eventos para el scroll y carga de la página
-        window.addEventListener('scroll', handleScroll);
-        document.addEventListener('DOMContentLoaded', () => {
-             handleScroll(); // Ejecutar al cargar para estado inicial correcto
-             lucide.createIcons(); // Asegurarse de que los iconos se renderizan
-        });
-
-        // --- Lógica para el menú móvil ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // --- Lógica para animaciones de scroll ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.scroll-animate');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('scroll-animate-in');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            animatedElements.forEach(element => {
-                observer.observe(element);
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
